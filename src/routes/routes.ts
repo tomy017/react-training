@@ -4,6 +4,7 @@ const history = createBrowserHistory();
 
 enum RouteName {
   Home = 'home',
+  Login = 'login',
   NotFound = 'notFound',
 }
 
@@ -43,6 +44,11 @@ const routes = [
   {
     name: RouteName.Home,
     path: '/',
+    exact: true,
+  },
+  {
+    name: RouteName.Login,
+    path: '/login',
     exact: true,
   },
   {
