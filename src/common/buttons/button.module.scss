@@ -6,3 +6,14 @@
   color: white;
   box-shadow: #56baec 0px 7px 29px 0px;
 }
+
+.customButton:hover {
+  background-color: #79c7ee;
+  width: 41%;
+}
+
+.customButton:disabled {
+  background-color: #94a8b280;
+  width: 40%;
+  box-shadow: none;
+}
