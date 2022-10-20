@@ -17,7 +17,11 @@ const Card = () => (
             <input type="password" name="password" placeholder="password" />
           </label>
         </div>
-        <Button> LOGIN </Button>
+        <Button
+          onClick={() => alert('You clicked me')}
+        >
+          LOGIN
+        </Button>
       </div>
     </form>
   </div>

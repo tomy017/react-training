@@ -1,12 +1,19 @@
 import React, { ReactNode } from 'react';
 import styles from './button.module.scss';
 
-type ButtonProps = {
-  children: ReactNode
-};
+interface ButtonProps {
+  children: ReactNode;
+  onClick: () => void;
+}
 
 const Button = (props : ButtonProps) => (
-  <button className={styles.customButton} type="button">{props.children}</button>
+  <button
+    className={styles.customButton}
+    type="button"
+    onClick={props.onClick}
+  >
+    {props.children}
+  </button>
 );
 
 export { Button };
