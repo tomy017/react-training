@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from './button.module.scss';
+import styles from './underline-button.module.scss';
 
 const DefaultProps = {
   onClick: undefined,
@@ -12,10 +12,10 @@ interface ButtonProps {
   isDisabled?: boolean;
 }
 
-const Button = (props : ButtonProps) => (
+const UnderlineButton = (props : ButtonProps) => (
   <button
-    className={styles.customButton}
-    type="submit"
+    className={styles.customUnderlineButton}
+    type="button"
     onClick={props.onClick}
     disabled={props.isDisabled}
   >
@@ -23,6 +23,6 @@ const Button = (props : ButtonProps) => (
   </button>
 );
 
-Button.defaultProps = DefaultProps;
+UnderlineButton.defaultProps = DefaultProps;
 
-export { Button };
+export { UnderlineButton };

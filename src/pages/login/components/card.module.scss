@@ -51,6 +51,14 @@
   border-bottom-right-radius: 20px;
 }
 
+.cardHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  gap: 10px
+}
+
 .cardFooter a {
   text-decoration: none;
 }
