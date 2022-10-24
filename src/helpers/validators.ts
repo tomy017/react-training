@@ -18,8 +18,8 @@ function checkSignupInputs(
   return firstName.length > 0
   && lastName.length > 0
   && email.length > 0
-  && isValidPassword(password)
-  && password === passwordConfirmation;
+  && password.length > 0
+  && passwordConfirmation.length > 0;
 }
 
 export {

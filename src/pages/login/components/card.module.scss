@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-	height: 65vh;
+	height: 80vh;
   width: 50vw;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   border-radius: 20px;
@@ -30,16 +30,27 @@
 }
 
 .cardElement {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cardElement label {
   width: 60%;
 }
 
-.cardElement input {
+.validInput {
   width: 100%;
   height: 3em;
   background-color: #f6f6f6;
   border-radius: 10px;
   border: 0;
   text-align: center;
+}
+
+.invalidInput {
+  @extend .validInput;
+  border: 2px solid red;
 }
 
 .cardFooter {
@@ -56,14 +67,6 @@
   border-bottom-right-radius: 20px;
 }
 
-.cardHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20%;
-  gap: 10px
-}
-
 .cardFooter a {
   text-decoration: none;
 }
@@ -72,22 +75,34 @@
   text-decoration: underline;
 }
 
-.error {
-  background-color: rgb(255, 200, 200);
+
+.cardHeader {
   display: flex;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 1%;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  gap: 10px
 }
 
 .info {
   background-color: #56baec46;
-  display: flex;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 1%;
   border-radius: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
+  text-align: center;
+  width: 60%;
+}
+
+.error {
+  @extend .info;
+  background-color: rgba(255, 200, 200, 0.442);
+}
+
+.errorLabel {
+  display: block;
+  color:red;
+  margin-top: 5px;
 }

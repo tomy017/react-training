@@ -28,6 +28,7 @@ const LoginForm = () => {
         <div className={styles.cardElement}>
           <label htmlFor="email">
             <input
+              className={styles.validInput}
               type="text"
               name="email"
               placeholder="email"
@@ -39,6 +40,7 @@ const LoginForm = () => {
         <div className={styles.cardElement}>
           <label htmlFor="password">
             <input
+              className={styles.validInput}
               type="password"
               name="password"
               placeholder="password"
