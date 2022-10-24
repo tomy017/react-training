@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Button } from 'common/buttons/button';
-import { isValidEmail, isValidPassword } from 'helpers/validators';
+import { isValidPassword, checkSignupInputs } from 'helpers/validators';
 import styles from './card.module.scss';
 
 const SignUpForm = () => {
@@ -10,18 +10,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [reminder, setReminder] = useState('Password must be 8 characters long and include special characters');
-
-  function checkInputs() {
-    console.log(password === passwordConfirmation);
-    return firstName.length > 0
-    && lastName.length > 0
-    && email.length > 0
-    && isValidPassword(password)
-    && password === passwordConfirmation;
-  }
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
@@ -50,16 +39,6 @@ const SignUpForm = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (!isValidEmail(e.target[0].value)) {
-      setEmailError('Invalid email');
-    } else {
-      setEmailError('');
-    }
-    if (!isValidPassword(e.target[3].value)) {
-      setPasswordError('Password must be at least 8 characters long and have special characters');
-    } else {
-      setPasswordError('');
-    }
   };
 
   return (
@@ -91,7 +70,6 @@ const SignUpForm = () => {
         </div>
         <div className={styles.cardElement}>
           <label htmlFor="email">
-            {passwordError && <span className={styles.error}>{emailError}</span>}
             <input
               required
               type="text"
@@ -127,7 +105,13 @@ const SignUpForm = () => {
         </div>
         <Button
           onClick={() => alert('You clicked me')}
-          isDisabled={!checkInputs()}
+          isDisabled={!checkSignupInputs(
+            firstName,
+            lastName,
+            email,
+            password,
+            passwordConfirmation,
+          )}
         >
           SIGNUP
         </Button>

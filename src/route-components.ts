@@ -13,6 +13,10 @@ const routeConfig = [
     component: Login,
   },
   {
+    name: RouteName.Signup,
+    component: Login,
+  },
+  {
     name: RouteName.NotFound,
     component: NotFound,
   },

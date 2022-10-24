@@ -5,6 +5,7 @@ const history = createBrowserHistory();
 enum RouteName {
   Home = 'home',
   Login = 'login',
+  Signup = 'signup',
   NotFound = 'notFound',
 }
 
