@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from 'common/buttons/button';
 import { isValidEmail } from 'helpers/validators';
 import styles from './card.module.scss';
+import userIcon from '../../../assets/images/user.png';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -31,6 +32,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.cardContainer}>
+        <img src={userIcon} alt="User icon" width={100} height={100} />
         <div className={styles.cardElement}>
           <label htmlFor="email">
             {emailError && <span className={styles.error}>{emailError}</span>}
