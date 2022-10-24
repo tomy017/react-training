@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Button } from 'common/buttons/button';
-import { isValidEmail } from 'helpers/validators';
+import { isValidEmail, isValidPassword } from 'helpers/validators';
 import styles from './card.module.scss';
 
 const SignUpForm = () => {
@@ -13,9 +13,6 @@ const SignUpForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [reminder, setReminder] = useState('Password must be 8 characters long and include special characters');
-
-  const strongRegex = /^(?=.*[!@.#$%^&?*])(?=.*[a-z]).{8,}$/;
-  const isValidPassword = (testPassword : string) => strongRegex.test(testPassword);
 
   function checkInputs() {
     console.log(password === passwordConfirmation);
