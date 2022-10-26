@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 
 import { UnderlineButton } from 'common/buttons/underline-button';
+import { goToPage, RouteName } from 'routes';
+import { User } from 'networking/types/user';
 import styles from './card.module.scss';
 import { LoginForm } from './login-form';
 import { SignUpForm } from './signup-form';
 
 const Card = () => {
+  const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '{}') as User;
+  if (activeUser.email) {
+    goToPage(RouteName.Home);
+  }
+
   const getPath = () => window.location.pathname;
   const [uri, setUri] = useState(getPath());
 
