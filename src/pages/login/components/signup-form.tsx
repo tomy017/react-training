@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Button } from 'common/buttons/button';
 import { isValidPassword, isValidEmail, checkSignupInputs } from 'helpers/validators';
 import { classnames } from 'helpers/utils';
+import { User } from 'networking/types/user';
+import { goToPage, RouteName } from 'routes';
 import styles from './card.module.scss';
 
 const DEFAULT_REMINDER = 'Password must be 8 characters long and include special characters';
@@ -59,6 +61,25 @@ const SignUpForm = () => {
     if (!(emailIsValid && passwordIsValid && confirmationIsValid)) {
       setError(true);
       setReminder('Check your information');
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
+    const newUser : User = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    const found = users.find((user) => user.email === newUser.email);
+    if (!found) {
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+      goToPage(RouteName.Login, undefined, undefined);
+    } else {
+      setError(true);
+      setReminder('User already registered');
     }
   };
 
