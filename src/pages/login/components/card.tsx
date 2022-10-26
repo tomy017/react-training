@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { UnderlineButton } from 'common/buttons/underline-button';
 import { goToPage, RouteName } from 'routes';
@@ -13,7 +13,11 @@ const Card = () => {
     goToPage(RouteName.Home);
   }
 
-  const [uri, setUri] = useState(() => window.location.pathname);
+  const [uri, setUri] = useState(window.location.pathname);
+
+  useEffect(() => {
+    setUri(window.location.pathname);
+  }, [window.location.pathname]);
 
   const handleClick = (path : string) => {
     setUri(path);
