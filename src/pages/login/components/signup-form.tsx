@@ -22,37 +22,24 @@ const SignUpForm = () => {
   const [error, setError] = useState(false);
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
-    setReminder(DEFAULT_REMINDER);
     setFirstName(e.target.value);
   };
 
   const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
-    setReminder(DEFAULT_REMINDER);
     setLastName(e.target.value);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
-    setReminder(DEFAULT_REMINDER);
     setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
     setReminder(DEFAULT_REMINDER);
+    setError(false);
     setPassword(e.target.value);
-    if (!isValidPassword(e.target.value)) {
-      setReminder('Password must be 8 characters long and include special characters');
-    } else {
-      setReminder('');
-    }
   };
 
   const handlePasswordConfirmationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(false);
-    setReminder(DEFAULT_REMINDER);
     setPasswordConfirmation(e.target.value);
   };
 
@@ -162,7 +149,6 @@ const SignUpForm = () => {
         </div>
         <div className={styles.cardElement}>
           <Button
-            onClick={() => alert('You clicked me')}
             isDisabled={!checkSignupInputs(
               firstName,
               lastName,
@@ -175,8 +161,7 @@ const SignUpForm = () => {
           </Button>
         </div>
         <div className={styles.cardElement}>
-          {reminder
-          && <span className={classnames(error ? styles.error : styles.info)}>{reminder}</span>}
+          <span className={classnames(error ? styles.error : styles.info)}>{reminder}</span>
         </div>
       </div>
     </form>

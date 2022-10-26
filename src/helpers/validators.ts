@@ -5,7 +5,7 @@ const strongRegex = /^(?=.*[!@.#$%^&?*])(?=.*[a-z]).{8,}$/;
 const isValidPassword = (testPassword : string) => strongRegex.test(testPassword);
 
 function checkLoginInputs(email: string, password: string) {
-  return email.length > 0 && password.length > 0 && isValidEmail(email);
+  return email.length > 0 && password.length > 0;
 }
 
 function checkSignupInputs(
