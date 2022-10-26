@@ -43,8 +43,9 @@ const SignUpForm = () => {
     setPasswordConfirmation(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     if (!(emailIsValid && passwordIsValid && confirmationIsValid)) {
       setError(true);
       setReminder('Check your information');
@@ -63,7 +64,7 @@ const SignUpForm = () => {
     if (!found) {
       users.push(newUser);
       localStorage.setItem('users', JSON.stringify(users));
-      goToPage(RouteName.Login, undefined, undefined);
+      goToPage(RouteName.Login);
     } else {
       setError(true);
       setReminder('User already registered');
@@ -81,7 +82,6 @@ const SignUpForm = () => {
           <label htmlFor="firstname">
             <input
               className={styles.validInput}
-              required
               type="text"
               name="firstname"
               placeholder="first name"
@@ -94,7 +94,6 @@ const SignUpForm = () => {
           <label htmlFor="lastname">
             <input
               className={styles.validInput}
-              required
               type="text"
               name="lastname"
               placeholder="last name"
@@ -107,7 +106,6 @@ const SignUpForm = () => {
           <label htmlFor="email">
             <input
               className={classnames(emailIsValid ? styles.validInput : styles.invalidInput)}
-              required
               type="text"
               name="email"
               placeholder="email"

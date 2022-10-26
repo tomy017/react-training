@@ -19,17 +19,22 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const emailValidation = () => setEmailIsValid(isValidEmail(email));
+  const handleEmailChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
 
-  const handleSubmit = (e : any) => {
+  const handleSubmit = (e : React.SyntheticEvent) => {
     e.preventDefault();
+
     if (!emailIsValid) {
       setError(true);
       setReminder('Check your email');
       return;
     }
+
     const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
     const found = users.find((user) => user.email === email && user.password === password);
+
     if (!found) {
       setError(true);
       setReminder('User not registered');
@@ -39,9 +44,7 @@ const LoginForm = () => {
     }
   };
 
-  const handleEmailChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  const emailValidation = () => setEmailIsValid(isValidEmail(email));
 
   return (
     <form onSubmit={handleSubmit}>

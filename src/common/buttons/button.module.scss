@@ -1,19 +1,21 @@
+@import '../../assets/stylesheets/colors.scss';
+
 .customButton {
-  background-color: #56baec;
+  background-color: $sky-blue;
   height: 3em;
   border-radius: 10px;
   width: 40%;
   color: white;
-  box-shadow: #56baec 0px 7px 29px 0px;
+  box-shadow: $sky-blue 0px 7px 29px 0px;
 }
 
 .customButton:hover {
-  background-color: #79c7ee;
+  background-color: $sky-blue-on-hover;
   width: 41%;
 }
 
 .customButton:disabled {
-  background-color: #94a8b280;
+  background-color: $sky-blue-disabled;
   width: 40%;
   box-shadow: none;
 }

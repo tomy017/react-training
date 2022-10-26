@@ -13,8 +13,7 @@ const Card = () => {
     goToPage(RouteName.Home);
   }
 
-  const getPath = () => window.location.pathname;
-  const [uri, setUri] = useState(getPath());
+  const [uri, setUri] = useState(() => window.location.pathname);
 
   const handleClick = (path : string) => {
     setUri(path);
