@@ -20,11 +20,18 @@ const Home = () => {
         <p>Loading...</p>
       )}
       {users.length > 0 && (
-        <ul>
+        <div className={globalStyles.genericItemContainer}>
           {users.map((user) => (
-            <li key={user.id}>{user.firstName}</li>
+            <div className={styles.userCard}>
+              <img
+                src={user.picture}
+                alt="User profile"
+              />
+              <span>{user.firstName}</span>
+              <span>{user.lastName}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
