@@ -19,11 +19,11 @@
     width: 100vw;
     border-radius: 0px;
   }
-}
 
-.card form {
-  width: 100%;
-  flex-grow: 1;
+  & form {
+    width: 100%;
+    flex-grow: 1;
+  }
 }
 
 .cardContainer {
