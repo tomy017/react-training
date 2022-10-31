@@ -4,18 +4,18 @@
   background-color: $sky-blue;
   height: 3em;
   border-radius: 10px;
-  width: 40%;
+  width: 200px;
   color: white;
   box-shadow: $sky-blue 0px 7px 29px 0px;
-}
 
-.customButton:hover {
-  background-color: $sky-blue-on-hover;
-  width: 41%;
-}
+  &:hover {
+    background-color: $sky-blue-on-hover;
+    width: 205px;
+  }
 
-.customButton:disabled {
-  background-color: $sky-blue-disabled;
-  width: 40%;
-  box-shadow: none;
+  &:disabled {
+    background-color: $sky-blue-disabled;
+    width: 200px;
+    box-shadow: none;
+  }
 }
