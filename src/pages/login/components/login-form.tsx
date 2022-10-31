@@ -77,6 +77,7 @@ const LoginForm = () => {
           </label>
         </div>
         <Button
+          type="submit"
           onClick={() => null}
           isDisabled={!checkLoginInputs(email, password)}
         >
