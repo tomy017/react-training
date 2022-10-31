@@ -10,37 +10,25 @@ import styles from './card.module.scss';
 const DEFAULT_REMINDER = 'Password must be 8 characters long and include special characters';
 
 const SignUpForm = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [formInputs, setFormInputs] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  });
   const [reminder, setReminder] = useState(DEFAULT_REMINDER);
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [confirmationIsValid, setConfirmationIsValid] = useState(true);
   const [error, setError] = useState(false);
 
-  const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value);
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReminder(DEFAULT_REMINDER);
-    setError(false);
-    setPassword(e.target.value);
-  };
-
-  const handlePasswordConfirmationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPasswordConfirmation(e.target.value);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setFormInputs({
+      ...formInputs,
+      [e.target.name]: value,
+    });
   };
 
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -54,10 +42,10 @@ const SignUpForm = () => {
 
     const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
     const newUser : User = {
-      firstName,
-      lastName,
-      email,
-      password,
+      firstName: formInputs.firstName,
+      lastName: formInputs.lastName,
+      email: formInputs.email,
+      password: formInputs.password,
     };
 
     const found = users.find((user) => user.email === newUser.email);
@@ -71,34 +59,36 @@ const SignUpForm = () => {
     }
   };
 
-  const emailValidation = () => setEmailIsValid(isValidEmail(email));
-  const passwordValidation = () => setPasswordIsValid(isValidPassword(password));
-  const confirmationValidation = () => setConfirmationIsValid(password === passwordConfirmation);
+  const emailValidation = () => setEmailIsValid(isValidEmail(formInputs.email));
+  const passwordValidation = () => setPasswordIsValid(isValidPassword(formInputs.password));
+  function confirmationValidation() {
+    setConfirmationIsValid(formInputs.password === formInputs.passwordConfirmation);
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.cardContainer}>
         <div className={styles.cardElement}>
-          <label htmlFor="firstname">
+          <label htmlFor="firstName">
             <input
               className={styles.validInput}
               type="text"
-              name="firstname"
+              name="firstName"
               placeholder="first name"
-              value={firstName}
-              onChange={handleFirstNameChange}
+              value={formInputs.firstName}
+              onChange={handleInputChange}
             />
           </label>
         </div>
         <div className={styles.cardElement}>
-          <label htmlFor="lastname">
+          <label htmlFor="lastName">
             <input
               className={styles.validInput}
               type="text"
-              name="lastname"
+              name="lastName"
               placeholder="last name"
-              value={lastName}
-              onChange={handleLastNameChange}
+              value={formInputs.lastName}
+              onChange={handleInputChange}
             />
           </label>
         </div>
@@ -109,8 +99,8 @@ const SignUpForm = () => {
               type="text"
               name="email"
               placeholder="email"
-              value={email}
-              onChange={handleEmailChange}
+              value={formInputs.email}
+              onChange={handleInputChange}
               onBlur={emailValidation}
             />
             {!emailIsValid && <span className={styles.errorLabel}>Check your email</span>}
@@ -123,22 +113,22 @@ const SignUpForm = () => {
               type="password"
               name="password"
               placeholder="password"
-              value={password}
-              onChange={handlePasswordChange}
+              value={formInputs.password}
+              onChange={handleInputChange}
               onBlur={passwordValidation}
             />
             {!passwordIsValid && <span className={styles.errorLabel}>Check your password</span>}
           </label>
         </div>
         <div className={styles.cardElement}>
-          <label htmlFor="password confirmation">
+          <label htmlFor="passwordConfirmation">
             <input
               className={classnames(confirmationIsValid ? styles.validInput : styles.invalidInput)}
               type="password"
-              name="password confirmation"
+              name="passwordConfirmation"
               placeholder="password confirmation"
-              value={passwordConfirmation}
-              onChange={handlePasswordConfirmationChange}
+              value={formInputs.passwordConfirmation}
+              onChange={handleInputChange}
               onBlur={confirmationValidation}
             />
             {!confirmationIsValid
@@ -149,11 +139,11 @@ const SignUpForm = () => {
           <Button
             onClick={() => null}
             isDisabled={!checkSignupInputs(
-              firstName,
-              lastName,
-              email,
-              password,
-              passwordConfirmation,
+              formInputs.firstName,
+              formInputs.lastName,
+              formInputs.email,
+              formInputs.password,
+              formInputs.passwordConfirmation,
             )}
           >
             SIGNUP
