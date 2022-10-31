@@ -147,6 +147,7 @@ const SignUpForm = () => {
         </div>
         <div className={styles.cardElement}>
           <Button
+            onClick={() => null}
             isDisabled={!checkSignupInputs(
               firstName,
               lastName,

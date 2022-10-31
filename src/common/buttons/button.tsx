@@ -1,15 +1,10 @@
 import React, { ReactNode } from 'react';
 import styles from './button.module.scss';
 
-const DefaultProps = {
-  onClick: undefined,
-  isDisabled: undefined,
-};
-
 interface ButtonProps {
   children: ReactNode;
-  onClick?: () => void;
-  isDisabled?: boolean;
+  onClick: () => void;
+  isDisabled: boolean;
 }
 
 const Button = (props : ButtonProps) => (
@@ -22,7 +17,5 @@ const Button = (props : ButtonProps) => (
     {props.children}
   </button>
 );
-
-Button.defaultProps = DefaultProps;
 
 export { Button };
