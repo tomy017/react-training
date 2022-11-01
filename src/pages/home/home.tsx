@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div className={globalStyles.genericContainer}>
       <h1 className={styles.title}>
-        Welcome! This is the homepage.
+        Welcome back!
       </h1>
       {users.length === 0 && (
         <p>Loading...</p>
@@ -22,7 +22,7 @@ const Home = () => {
       {users.length > 0 && (
         <div className={globalStyles.genericItemContainer}>
           {users.map((user) => (
-            <div className={styles.userCard}>
+            <div className={styles.userCard} data-testid="userCard">
               <img
                 src={user.picture}
                 alt="User profile"
