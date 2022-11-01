@@ -1,10 +1,11 @@
 import { classnames } from 'helpers/utils';
 import React, { ReactNode } from 'react';
+import { Button } from './button';
 import styles from './underline-button.module.scss';
 
 const DefaultProps = {
   onClick: undefined,
-  isDisabled: undefined,
+  isDisabled: false,
   isActive: undefined,
 };
 
@@ -16,16 +17,16 @@ interface ButtonProps {
 }
 
 const UnderlineButton = (props : ButtonProps) => (
-  <button
+  <Button
     className={classnames(
       !props.isActive ? styles.customUnderlineButtonInactive : styles.customUnderlineButton,
     )}
     type="button"
     onClick={props.onClick}
-    disabled={props.isDisabled}
+    isDisabled={props.isDisabled || false}
   >
     {props.children}
-  </button>
+  </Button>
 );
 
 UnderlineButton.defaultProps = DefaultProps;
