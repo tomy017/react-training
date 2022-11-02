@@ -1,0 +1,21 @@
+@import '../../assets/stylesheets/colors.scss';
+
+.customButton {
+  background-color: $sky-blue;
+  height: 3em;
+  border-radius: 10px;
+  width: 200px;
+  color: white;
+  box-shadow: $sky-blue 0px 7px 29px 0px;
+
+  &:hover {
+    background-color: $sky-blue-on-hover;
+    width: 205px;
+  }
+
+  &:disabled {
+    background-color: $sky-blue-disabled;
+    width: 200px;
+    box-shadow: none;
+  }
+}
