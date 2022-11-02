@@ -32,3 +32,10 @@
   height: 90px;
   margin-bottom: 5px;
 }
+
+.pageNavigation {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+  margin-bottom: 10px;
+}
