@@ -1,0 +1,16 @@
+@import '../../assets/stylesheets/colors.scss';
+
+.customUnderlineButton {
+  height: 3em;
+  border-bottom: solid;
+  border-width: 3px;
+  border-color: $sky-blue;
+  font-weight: bold;
+}
+
+.customUnderlineButtonInactive {
+  @extend .customUnderlineButton;
+  font-weight: bold;
+  color: grey;
+  border: none;
+}
