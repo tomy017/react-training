@@ -1,4 +1,6 @@
+import { NavBar } from 'pages/home/components/nav-bar';
 import React from 'react';
+import styles from '../../assets/stylesheets/global-styles.module.scss';
 
 enum LayoutType {
   // Add more layout types here
@@ -15,7 +17,10 @@ const Layout = ({ layoutType, children } : LayoutProps) => {
     return (
       // eslint-disable-next-line react/jsx-no-useless-fragment
       <>
-        {children}
+        <div className={styles.genericContainer}>
+          <NavBar />
+          {children}
+        </div>
       </>
     );
   }
