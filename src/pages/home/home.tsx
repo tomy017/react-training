@@ -4,9 +4,11 @@ import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
 import { Button } from 'common/buttons/button';
+import { User } from 'networking/types/user';
 import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
 import buttonStyles from '../../common/buttons/pagination-button.module.scss';
+import { NavBar } from './components/nav-bar';
 
 const getPage = () => {
   const url = new URL(window.location.href);
@@ -23,6 +25,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(getPage());
   const [lastPage, setLastPage] = useState(0);
   const [disable, setDisable] = useState(false);
+  const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '') as User;
 
   const RECORDS_PER_PAGE = 20;
 
@@ -78,6 +81,9 @@ const Home = () => {
 
   return (
     <div className={globalStyles.genericContainer}>
+      <NavBar
+        name={activeUser.firstName}
+      />
       <h1 className={styles.title}>
         Welcome back 👋
       </h1>

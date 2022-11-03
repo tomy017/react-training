@@ -1,0 +1,28 @@
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  gap: 10%;
+  background-color: white;
+  height: 60px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #cecece;
+  font-size: large;
+}
+
+.navBar form {
+  width: 300px;
+}
+
+.navBar input {
+  padding-left: 10px;
+  border-radius: 10px;
+  background-color: #ededed;
+  border: none;
+  width: 100%;
+  height: 40px;
+}
