@@ -4,6 +4,7 @@ import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
 import { Button } from 'common/buttons/button';
+import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
 import buttonStyles from '../../common/buttons/pagination-button.module.scss';
 
@@ -86,14 +87,13 @@ const Home = () => {
       {users.length > 0 && (
         <div className={globalStyles.genericItemContainer}>
           {users.map((user) => (
-            <div key={user.id} className={styles.userCard} data-testid="userCard">
-              <img
-                src={user.picture}
-                alt="User profile"
-              />
-              <span>{user.firstName}</span>
-              <span>{user.lastName}</span>
-            </div>
+            <UserCard
+              id={user.id}
+              title={user.title}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              picture={user.picture}
+            />
           ))}
         </div>
       )}
