@@ -33,12 +33,14 @@
 }
 
 .webName {
+  width: 300px;
   background: #121FCF;
   background: linear-gradient(to right, #121FCF 0%, #CF1512 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: x-large;
   font-weight: bold;
+  text-align: center;
 }
 
 .wrapper {
@@ -51,4 +53,9 @@
   position:absolute;
   left:0;
   padding:10px 10px;
+}
+
+.activeUser {
+  text-align: center;
+  width: 300px;
 }

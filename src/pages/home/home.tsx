@@ -33,18 +33,6 @@ const Home = () => {
     goToPage(RouteName.Login);
   }
 
-  const setParams = (defaultPage? : boolean) => {
-    const queryPage = getPage();
-    let params;
-    if (defaultPage) {
-      params = '?page=0';
-    } else {
-      params = ParamsHelper.createQueryParams({ page: !queryPage ? currentPage : queryPage });
-    }
-    const route = `/${params}`;
-    window.history.pushState({}, '', route);
-  };
-
   const redirectDefaultPage = () => {
     const params = '?page=0';
     const route = `/${params}`;
@@ -78,7 +66,7 @@ const Home = () => {
         setUsers(value.users);
         setLastPage(Math.floor(value.total / RECORDS_PER_PAGE));
         setDisable(false);
-        setParams();
+        // setParams();
       }
     });
   }, [currentPage]);
