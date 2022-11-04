@@ -6,12 +6,17 @@ const NavBar = () => {
   const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '') as User;
   return (
     <div className={styles.navBar}>
-      <span>Dummygram</span>
+      <span className={styles.webName}>Dummygram</span>
       <form>
         <label htmlFor="first name or last name">
-          <input
-            placeholder="Search"
-          />
+          <div className={styles.wrapper}>
+            <input
+              placeholder="Search"
+            />
+            <i className="material-symbols-outlined">
+              search
+            </i>
+          </div>
         </label>
       </form>
       <span>{activeUser.firstName}</span>
