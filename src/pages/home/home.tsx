@@ -4,7 +4,8 @@ import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
 import { Button } from 'common/buttons/button';
-// import { User } from 'networking/types/user';
+import { goToPage, RouteName } from 'routes';
+import { User } from 'networking/types/user';
 import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
 import buttonStyles from '../../common/buttons/pagination-button.module.scss';
@@ -26,6 +27,11 @@ const Home = () => {
   const [disable, setDisable] = useState(false);
 
   const RECORDS_PER_PAGE = 20;
+
+  const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '{}') as User;
+  if (!activeUser.email) {
+    goToPage(RouteName.Login);
+  }
 
   const setParams = (defaultPage? : boolean) => {
     const queryPage = getPage();
