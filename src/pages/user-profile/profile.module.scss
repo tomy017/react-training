@@ -1,0 +1,32 @@
+.userInfo {
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.profilePicture {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.profilePicture img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.data {
+  display: grid;
+  justify-content: start;
+  padding-left: 10px;
+}
+
+.labels {
+  display: grid;
+  justify-content: end;
+  padding-right: 10px;
+}

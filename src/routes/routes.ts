@@ -45,7 +45,7 @@ const determineRouteParams = (route: Route): Route => {
 const routes = [
   {
     name: RouteName.Home,
-    path: '/home',
+    path: '/',
     exact: true,
   },
   {

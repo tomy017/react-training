@@ -4,7 +4,7 @@ import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
 import { Button } from 'common/buttons/button';
-import { goToPage, RouteName } from 'routes';
+import { AppLink, goToPage, RouteName } from 'routes';
 import { User } from 'networking/types/user';
 import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
@@ -82,13 +82,19 @@ const Home = () => {
       {users.length > 0 && (
         <div className={globalStyles.genericItemContainer}>
           {users.map((user) => (
-            <UserCard
-              id={user.id}
-              title={user.title}
-              firstName={user.firstName}
-              lastName={user.lastName}
-              picture={user.picture}
-            />
+            <AppLink
+              routeName={RouteName.UserProfile}
+              pathParams={{ id: user.id }}
+              className={styles.link}
+            >
+              <UserCard
+                id={user.id}
+                title={user.title}
+                firstName={user.firstName}
+                lastName={user.lastName}
+                picture={user.picture}
+              />
+            </AppLink>
           ))}
         </div>
       )}

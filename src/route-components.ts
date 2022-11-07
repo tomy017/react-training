@@ -2,7 +2,7 @@ import { RouteName } from 'routes/routes';
 import { Login } from 'pages/login/login';
 import { Home } from 'pages/home/index';
 import { NotFound } from 'pages/not-found';
-import { UserProfile } from 'pages/user-profile/user-profile';
+import { UserProfile } from 'pages/user-profile/index';
 
 const routeConfig = [
   {
