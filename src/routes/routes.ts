@@ -7,6 +7,7 @@ enum RouteName {
   Login = 'login',
   Signup = 'signup',
   NotFound = 'notFound',
+  UserProfile = 'userProfile',
 }
 
 type Route = {
@@ -44,12 +45,22 @@ const determineRouteParams = (route: Route): Route => {
 const routes = [
   {
     name: RouteName.Home,
-    path: '/',
+    path: '/home',
     exact: true,
   },
   {
     name: RouteName.Login,
     path: '/login',
+    exact: true,
+  },
+  {
+    name: RouteName.Signup,
+    path: '/signup',
+    exact: true,
+  },
+  {
+    name: RouteName.UserProfile,
+    path: '/profile/:id',
     exact: true,
   },
   {
