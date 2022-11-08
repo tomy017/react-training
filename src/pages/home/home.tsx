@@ -65,7 +65,6 @@ const Home = () => {
         setUsers(value.users);
         setLastPage(Math.floor(value.total / RECORDS_PER_PAGE));
         setDisable(false);
-        // setParams();
       }
     });
   }, [currentPage]);
@@ -75,10 +74,9 @@ const Home = () => {
       <h1 className={styles.title}>
         Welcome back 👋
       </h1>
-      {users.length === 0 && (
+      {users.length === 0 ? (
         <p>Loading...</p>
-      )}
-      {users.length > 0 && (
+      ) : (
         <div className={globalStyles.genericItemContainer}>
           {users.map((user) => (
             <UserCard

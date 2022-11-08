@@ -13,7 +13,7 @@ interface PaginationProps {
 
 const Pagination = (props : PaginationProps) => (
   <div className={styles.pageNavigation}>
-    {(props.currentPage > 0 && props.length !== 0) && (
+    {(props.currentPage > 0 && !!props.length) && (
       <PaginationButton
         isDisabled={props.disable}
         onClick={props.onPreviousClick}
