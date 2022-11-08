@@ -8,15 +8,15 @@
   border: solid 1px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   cursor: pointer;
-}
 
-.userCard:hover {
-  box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
-}
+  &:hover{
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
+  }
 
-.userCard:hover img{
-  border-style: solid;
-  border-color: #79c7ee;
+  &:hover img{
+    border-style: solid;
+    border-color: #79c7ee;
+  }
 }
 
 .userCard img {
