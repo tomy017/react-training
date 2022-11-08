@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
-import { Button } from 'common/buttons/button';
 import { goToPage, RouteName } from 'routes';
 import { User } from 'networking/types/user';
+import { Pagination } from 'common/pagination/pagination';
 import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
-import buttonStyles from '../../common/buttons/pagination-button.module.scss';
 
 const getPage = () => {
   const url = new URL(window.location.href);
@@ -92,28 +91,14 @@ const Home = () => {
           ))}
         </div>
       )}
-      <div className={styles.pageNavigation}>
-        {(currentPage > 0 && users.length !== 0) && (
-          <Button
-            className={buttonStyles.customPaginationButton}
-            type="button"
-            isDisabled={disable}
-            onClick={handlePreviousPageClick}
-          >
-            👈 Previous page
-          </Button>
-        )}
-        {(currentPage < lastPage) && (
-          <Button
-            className={buttonStyles.customPaginationButton}
-            type="button"
-            isDisabled={disable}
-            onClick={handleNextPageClick}
-          >
-            Next page 👉
-          </Button>
-        )}
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        lastPage={lastPage}
+        length={users.length}
+        disable={disable}
+        onPreviousClick={handlePreviousPageClick}
+        onNextClick={handleNextPageClick}
+      />
     </>
   );
 };
