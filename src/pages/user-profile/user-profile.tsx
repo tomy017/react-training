@@ -29,15 +29,15 @@ const UserProfile = () => {
           </div>
           <div className={styles.wrapper}>
             <p>Firstname:</p>
-            <p>{user?.firstName}</p>
+            <p>{user.firstName}</p>
             <p>Lastname:</p>
-            <p>{user?.lastName}</p>
+            <p>{user.lastName}</p>
             <p>Birthdate:</p>
-            <p>{user?.dateOfBirth}</p>
+            <p>{new Date(user.dateOfBirth).toLocaleDateString('en-GB')}</p>
             <p>Email:</p>
-            <p>{user?.email}</p>
+            <a href={`mailto:${user.email}`}>{user.email}</a>
             <p>Phone number:</p>
-            <p>{user?.phone}</p>
+            <a href={`tel:${user.phone}`}>{user.phone}</a>
           </div>
         </div>
       )}
