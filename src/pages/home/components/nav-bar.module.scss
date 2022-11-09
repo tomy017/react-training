@@ -1,0 +1,63 @@
+@import '../../../assets/stylesheets/colors.scss';
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  gap: 10%;
+  background-color: white;
+  height: 60px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: $nav-bar-border;
+  font-size: large;
+
+  & form {
+    width: 300px;
+  }
+
+  & input {
+    width: 100%;
+    padding-left: 40px;
+    border-radius: 10px;
+    background-color: $nav-bar-input-background;
+    border: none;
+    height: 40px;
+  }
+
+  & input:focus{
+    outline: none;
+    border:1px solid $nav-bar-input-border-focus;
+  }
+}
+
+.webName {
+  width: 300px;
+  background: $web-name-start-color;
+  background: linear-gradient(to right, $web-name-start-color 0%, $web-name-end-color 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapper {
+  position:relative;
+  width: 100%;
+  color: $nav-bar-input-border-focus;
+}
+
+.wrapper i {
+  position:absolute;
+  left:0;
+  padding:10px 10px;
+}
+
+.activeUser {
+  text-align: center;
+  width: 300px;
+}

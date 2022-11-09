@@ -3,7 +3,7 @@
   they are centrally documented.
 */
 const API_ROUTES = {
-  EXAMPLE: '/example',
+  USERS: 'https://dummyapi.io/data/v1/user',
 };
 
 export { API_ROUTES };

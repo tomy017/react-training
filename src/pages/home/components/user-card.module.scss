@@ -1,0 +1,27 @@
+.userCard {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  &:hover img{
+    border-style: solid;
+    border-color: #79c7ee;
+  }
+}
+
+.userCard img {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 5px;
+}

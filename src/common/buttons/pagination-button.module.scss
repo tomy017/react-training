@@ -1,0 +1,11 @@
+@import '../../assets/stylesheets/colors.scss';
+
+.customPaginationButton {
+  height: 2em;
+  background-color: rgba(0, 0, 0, 0.115);
+  border-radius: 10px;
+
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.065);
+  }
+}
