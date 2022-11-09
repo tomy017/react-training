@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
@@ -6,6 +6,7 @@ import { ParamsHelper } from 'helpers/params-helper';
 import { goToPage, RouteName } from 'routes';
 import { User } from 'networking/types/user';
 import { Pagination } from 'common/pagination/pagination';
+import { UserContext } from 'user-context';
 import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
 
@@ -20,7 +21,8 @@ const getPage = () => {
 };
 
 const Home = () => {
-  const [users, setUsers] = useState<DummyUser[]>([]);
+  const contextValue = useContext(UserContext);
+  // const [users, setUsers] = useState<DummyUser[]>([]);
   const [currentPage, setCurrentPage] = useState(getPage());
   const [lastPage, setLastPage] = useState(0);
   const [disable, setDisable] = useState(false);
@@ -62,7 +64,8 @@ const Home = () => {
       if (value.users.length === 0) {
         redirectDefaultPage();
       } else {
-        setUsers(value.users);
+        contextValue.updateDefaultUsers(value.users);
+        contextValue.updateFilterUsers(value.users);
         setLastPage(Math.floor(value.total / RECORDS_PER_PAGE));
         setDisable(false);
       }
@@ -74,11 +77,11 @@ const Home = () => {
       <h1 className={styles.title}>
         Welcome back 👋
       </h1>
-      {users.length === 0 ? (
+      {contextValue.filterUsers.length === 0 ? (
         <p>Loading...</p>
       ) : (
         <div className={globalStyles.genericItemContainer}>
-          {users.map((user) => (
+          {contextValue.filterUsers.map((user) => (
             <UserCard
               id={user.id}
               title={user.title}
@@ -92,7 +95,7 @@ const Home = () => {
       <Pagination
         currentPage={currentPage}
         lastPage={lastPage}
-        length={users.length}
+        length={contextValue.filterUsers.length}
         disable={disable}
         onPreviousClick={handlePreviousPageClick}
         onNextClick={handleNextPageClick}
