@@ -1,3 +1,5 @@
+@import '../../../assets/stylesheets/colors.scss';
+
 .navBar {
   display: flex;
   align-items: center;
@@ -10,7 +12,7 @@
   height: 60px;
   border-bottom: solid;
   border-width: 1px;
-  border-color: #cecece;
+  border-color: $nav-bar-border;
   font-size: large;
 
   & form {
@@ -21,21 +23,21 @@
     width: 100%;
     padding-left: 40px;
     border-radius: 10px;
-    background-color: #ededed;
+    background-color: $nav-bar-input-background;
     border: none;
     height: 40px;
   }
 
   & input:focus{
-    outline: none !important;
-    border:1px solid #9c9c9c;
+    outline: none;
+    border:1px solid $nav-bar-input-border-focus;
   }
 }
 
 .webName {
   width: 300px;
-  background: #121FCF;
-  background: linear-gradient(to right, #121FCF 0%, #CF1512 100%);
+  background: $web-name-start-color;
+  background: linear-gradient(to right, $web-name-start-color 0%, $web-name-end-color 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: x-large;
@@ -46,7 +48,7 @@
 .wrapper {
   position:relative;
   width: 100%;
-  color: #9c9c9c;
+  color: $nav-bar-input-border-focus;
 }
 
 .wrapper i {
