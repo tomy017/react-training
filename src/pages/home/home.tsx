@@ -6,7 +6,7 @@ import { ParamsHelper } from 'helpers/params-helper';
 import { goToPage, RouteName } from 'routes';
 import { User } from 'networking/types/user';
 import { Pagination } from 'common/pagination/pagination';
-import { UserContext } from 'user-context';
+import { UserContext } from '../../common/user-context';
 import { UserCard } from './components/user-card';
 import styles from './home.module.scss';
 

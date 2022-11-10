@@ -1,8 +1,8 @@
 import { User } from 'networking/types/user';
 import React, { useContext, useEffect, useState } from 'react';
 import { RouteName } from 'routes';
-import { UserContext } from 'user-context';
 import { useDebounce } from 'hooks/useDebounce';
+import { UserContext } from '../../../common/user-context';
 import styles from './nav-bar.module.scss';
 
 const NavBar = () => {

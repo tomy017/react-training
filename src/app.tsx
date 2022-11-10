@@ -4,7 +4,7 @@ import { Router } from 'routes';
 import { routeConfig } from 'route-components';
 import 'index.scss';
 import { ErrorBoundary } from 'common/error-boundary';
-import { UserContext } from 'user-context';
+import { UserContext } from './common/user-context';
 
 const App = () => {
   const [filterUsers, setFilterUsers] = useState<DummyUser[]>([]);
