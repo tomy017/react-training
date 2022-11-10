@@ -25,7 +25,7 @@ const UserProfile = () => {
       {user && (
         <div className={styles.userInfo}>
           <div className={styles.profilePicture}>
-            <img alt="profile" src={user?.picture} />
+            <img alt="profile" src={user.picture} />
           </div>
           <div className={styles.wrapper}>
             <p>Firstname:</p>
