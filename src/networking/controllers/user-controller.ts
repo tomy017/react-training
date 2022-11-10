@@ -6,7 +6,7 @@ class UserController {
   static async getUsers(page: number) : Promise<DummyUsers> {
     const config = {
       headers: {
-        'app-id': '635aa88d7338f9f2167b2ab4',
+        'app-id': process.env.APP_ID,
       },
     };
     const response = await ApiService.get<RawUsers>(API_ROUTES.USERS, { page }, config);
