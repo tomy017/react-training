@@ -33,7 +33,7 @@ const UserProfile = () => {
             <p>Lastname:</p>
             <p>{user.lastName}</p>
             <p>Birthdate:</p>
-            <p>{new Date(user.dateOfBirth).toLocaleDateString('en-GB')}</p>
+            <p>{new Date(user.dateOfBirth).toLocaleDateString()}</p>
             <p>Email:</p>
             <a href={`mailto:${user.email}`}>{user.email}</a>
             <p>Phone number:</p>
