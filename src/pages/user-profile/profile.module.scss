@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  @media(max-width: 800px){
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
   }
@@ -18,17 +18,18 @@
   grid-column-start: 1;
   grid-column-end: 3;
   font-weight: bold;
-  @media(max-width: 800px){
+  @media (max-width: 800px) {
     grid-template-columns: 1fr;
     justify-items: center;
   }
 }
 
-p:nth-child(2n), a:nth-child(2n) {
+p:nth-child(2n),
+a:nth-child(2n) {
   justify-self: start;
   padding-left: 10px;
   font-weight: 100;
-  @media(max-width: 800px){
+  @media (max-width: 800px) {
     padding-left: 0px;
     justify-self: center;
   }
@@ -49,7 +50,7 @@ a:nth-child(2n) {
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  @media(max-width: 800px){
+  @media (max-width: 800px) {
     width: 150px;
     height: 150px;
   }
