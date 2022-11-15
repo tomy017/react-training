@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
-import { goToPage, RouteName } from 'routes';
+import { AppLink, goToPage, RouteName } from 'routes';
 import { User } from 'networking/types/user';
 import { Pagination } from 'common/pagination/pagination';
 import { UserContext } from '../../common/user-context';
@@ -82,13 +82,19 @@ const Home = () => {
       ) : (
         <div className={globalStyles.genericItemContainer}>
           {contextValue.filterUsers.map((user) => (
-            <UserCard
-              id={user.id}
-              title={user.title}
-              firstName={user.firstName}
-              lastName={user.lastName}
-              picture={user.picture}
-            />
+            <AppLink
+              routeName={RouteName.UserProfile}
+              pathParams={{ id: user.id }}
+              className={styles.link}
+            >
+              <UserCard
+                id={user.id}
+                title={user.title}
+                firstName={user.firstName}
+                lastName={user.lastName}
+                picture={user.picture}
+              />
+            </AppLink>
           ))}
         </div>
       )}

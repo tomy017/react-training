@@ -1,7 +1,7 @@
 import { User } from 'networking/types/user';
 import React, { useContext, useEffect, useState } from 'react';
-import { RouteName } from 'routes';
 import { useDebounce } from 'hooks/useDebounce';
+import { AppLink, RouteName } from 'routes';
 import { UserContext } from '../../../common/user-context';
 import styles from './nav-bar.module.scss';
 
@@ -17,7 +17,7 @@ const NavBar = () => {
       // eslint-disable-next-line max-len
       const filter = contextValue.defaultUsers.filter((user) => user.firstName.toUpperCase().match(debouncedSearchTerm.toUpperCase()));
 
-      if (filter.length === 0) {
+      if (!filter.length) {
         contextValue.updateFilterUsers(defaultUsers);
       } else {
         contextValue.updateFilterUsers(filter);
@@ -33,7 +33,12 @@ const NavBar = () => {
 
   return (
     <div className={styles.navBar}>
-      <a className={styles.webName} href={RouteName.Home}>Dummygram</a>
+      <AppLink
+        className={styles.webName}
+        routeName={RouteName.Home}
+      >
+        Dummygram
+      </AppLink>
       <form>
         <label htmlFor="first name or last name">
           <div className={styles.wrapper}>

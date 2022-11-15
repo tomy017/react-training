@@ -13,6 +13,7 @@ const environment = {
 
 export const constants = {
   apiBaseURL: fetchVariable('REACT_APP_API_BASE_URL', 'REPLACE ME'),
+  appID: fetchVariable('REACT_APP_ID', ''),
 
   environment,
 };
