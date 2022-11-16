@@ -7,15 +7,15 @@ import { ErrorBoundary } from 'common/error-boundary';
 import { UserContext } from './common/user-context';
 
 const App = () => {
-  const [filterUsers, setFilterUsers] = useState<DummyUser[]>([]);
-  const [defaultUsers, setDefaultUsers] = useState<DummyUser[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<DummyUser[]>([]);
+  const [unfilteredUsers, setUnfilteredUsers] = useState<DummyUser[]>([]);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
-    defaultUsers,
-    filterUsers,
-    updateDefaultUsers: setDefaultUsers,
-    updateFilterUsers: setFilterUsers,
+    unfilteredUsers,
+    filteredUsers,
+    updateUnfilteredUsers: setUnfilteredUsers,
+    updateFilteredUsers: setFilteredUsers,
   };
 
   return (

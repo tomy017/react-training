@@ -22,7 +22,6 @@ const getPage = () => {
 
 const Home = () => {
   const contextValue = useContext(UserContext);
-  // const [users, setUsers] = useState<DummyUser[]>([]);
   const [currentPage, setCurrentPage] = useState(getPage());
   const [lastPage, setLastPage] = useState(0);
   const [disable, setDisable] = useState(false);
@@ -64,8 +63,8 @@ const Home = () => {
       if (value.users.length === 0) {
         redirectDefaultPage();
       } else {
-        contextValue.updateDefaultUsers(value.users);
-        contextValue.updateFilterUsers(value.users);
+        contextValue.updateUnfilteredUsers(value.users);
+        contextValue.updateFilteredUsers(value.users);
         setLastPage(Math.floor(value.total / RECORDS_PER_PAGE));
         setDisable(false);
       }
@@ -77,11 +76,11 @@ const Home = () => {
       <h1 className={styles.title}>
         Welcome back 👋
       </h1>
-      {contextValue.filterUsers.length === 0 ? (
+      {contextValue.filteredUsers.length === 0 ? (
         <p>Loading...</p>
       ) : (
         <div className={globalStyles.genericItemContainer}>
-          {contextValue.filterUsers.map((user) => (
+          {contextValue.filteredUsers.map((user) => (
             <AppLink
               routeName={RouteName.UserProfile}
               pathParams={{ id: user.id }}
@@ -101,7 +100,7 @@ const Home = () => {
       <Pagination
         currentPage={currentPage}
         lastPage={lastPage}
-        length={contextValue.filterUsers.length}
+        length={contextValue.filteredUsers.length}
         disable={disable}
         onPreviousClick={handlePreviousPageClick}
         onNextClick={handleNextPageClick}

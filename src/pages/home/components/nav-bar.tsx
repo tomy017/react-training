@@ -9,21 +9,18 @@ const NavBar = () => {
   const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '') as User;
   const contextValue = useContext(UserContext);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const { defaultUsers } = contextValue;
+  const { unfilteredUsers } = contextValue;
   const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
       // eslint-disable-next-line max-len
-      const filter = contextValue.defaultUsers.filter((user) => user.firstName.toUpperCase().match(debouncedSearchTerm.toUpperCase()));
+      const filter = contextValue.unfilteredUsers.filter((user) => user.firstName.toUpperCase().match(debouncedSearchTerm.toUpperCase()));
 
-      if (!filter.length) {
-        contextValue.updateFilterUsers(defaultUsers);
-      } else {
-        contextValue.updateFilterUsers(filter);
-      }
+      const toFilter = filter.length ? filter : unfilteredUsers;
+      contextValue.updateFilteredUsers(toFilter);
     } else {
-      contextValue.updateFilterUsers(defaultUsers);
+      contextValue.updateFilteredUsers(unfilteredUsers);
     }
   }, [debouncedSearchTerm]);
 
