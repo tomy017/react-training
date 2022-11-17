@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { Button } from 'common/buttons/button';
 import { checkLoginInputs, isValidEmail } from 'helpers/validators';
-import { User } from 'networking/types/user';
 import { goToPage, RouteName } from 'routes';
 import { classnames } from 'helpers/utils';
+import { UserController } from 'networking/controllers/user-controller';
 import styles from './card.module.scss';
 import userIcon from '../../../assets/images/user.png';
 
@@ -26,22 +26,20 @@ const LoginForm = () => {
   const handleSubmit = (e : React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!emailIsValid) {
-      setError(true);
-      setReminder('Check your email');
-      return;
-    }
+    const data: LoginData = {
+      email,
+      password,
+    };
 
-    const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
-    const found = users.find((user) => user.email === email && user.password === password);
-
-    if (!found) {
-      setError(true);
-      setReminder('User not registered');
-    } else {
-      localStorage.setItem('activeUser', JSON.stringify(found));
+    UserController.login(data).then((user) => {
+      localStorage.setItem('userToken', user.token);
+      document.cookie = `userToken=${user.token};max-age=43200`;
+      localStorage.setItem('activeUser', JSON.stringify(user));
       goToPage(RouteName.Home, undefined, undefined);
-    }
+    }).catch((err) => {
+      setError(true);
+      setReminder(err.message);
+    });
   };
 
   const emailValidation = () => setEmailIsValid(isValidEmail(email));

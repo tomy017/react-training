@@ -25,7 +25,7 @@ const NavBar = () => {
           </div>
         </label>
       </form>
-      <span className={styles.activeUser}>{activeUser.firstName}</span>
+      <span className={styles.activeUser}>{activeUser.firstname}</span>
     </div>
   );
 };
