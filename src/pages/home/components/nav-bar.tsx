@@ -7,20 +7,19 @@ import styles from './nav-bar.module.scss';
 
 const NavBar = () => {
   const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '') as User;
-  const contextValue = useContext(UserContext);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const { unfilteredUsers } = contextValue;
+  const { unfilteredUsers, updateFilteredUsers } = useContext(UserContext);
   const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
 
   useEffect(() => {
     if (debouncedSearchTerm) {
       // eslint-disable-next-line max-len
-      const filter = contextValue.unfilteredUsers.filter((user) => user.firstName.toUpperCase().match(debouncedSearchTerm.toUpperCase()));
+      const filter = unfilteredUsers.filter((user) => user.firstName.toUpperCase().match(debouncedSearchTerm.toUpperCase()));
 
       const toFilter = filter.length ? filter : unfilteredUsers;
-      contextValue.updateFilteredUsers(toFilter);
+      updateFilteredUsers(toFilter);
     } else {
-      contextValue.updateFilteredUsers(unfilteredUsers);
+      updateFilteredUsers(unfilteredUsers);
     }
   }, [debouncedSearchTerm]);
 
