@@ -19,11 +19,11 @@ const App = () => {
   };
 
   return (
-    <UserContext.Provider value={value}>
-      <ErrorBoundary>
+    <ErrorBoundary>
+      <UserContext.Provider value={value}>
         <Router routeConfig={routeConfig} />
-      </ErrorBoundary>
-    </UserContext.Provider>
+      </UserContext.Provider>
+    </ErrorBoundary>
   );
 };
 
