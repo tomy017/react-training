@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import * as jose from 'jose';
 
 import { Button } from 'common/buttons/button';
 import { checkLoginInputs, isValidEmail } from 'helpers/validators';
 import { goToPage, RouteName } from 'routes';
 import { classnames } from 'helpers/utils';
 import { UserController } from 'networking/controllers/user-controller';
+import { constants } from '../../../config/constants';
 import styles from './card.module.scss';
 import userIcon from '../../../assets/images/user.png';
 
@@ -31,9 +33,10 @@ const LoginForm = () => {
       password,
     };
 
-    UserController.login(data).then((user) => {
-      localStorage.setItem('userToken', user.token);
-      document.cookie = `userToken=${user.token};max-age=43200`;
+    UserController.login(data).then(async (user) => {
+      const publicKey = await jose.importSPKI(constants.publicKey!!, 'RS256');
+      const decoded = await jose.jwtVerify(user.token, publicKey);
+      document.cookie = `userToken=${user.token};expires=${decoded.payload.expires as Date}`;
       localStorage.setItem('activeUser', JSON.stringify(user));
       goToPage(RouteName.Home, undefined, undefined);
     }).catch((err) => {
