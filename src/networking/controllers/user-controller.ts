@@ -1,7 +1,6 @@
 import { API_ROUTES } from 'networking/api-routes';
 import { ApiService } from 'networking/api-service';
 import { UserSerializer } from 'networking/serializers/user-serializer';
-import { User } from 'networking/types/user';
 import { constants } from '../../config/constants';
 
 class UserController {

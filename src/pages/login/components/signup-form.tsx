@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Button } from 'common/buttons/button';
 import { isValidPassword, isValidEmail, checkSignupInputs } from 'helpers/validators';
 import { classnames } from 'helpers/utils';
-import { User } from 'networking/types/user';
 import { goToPage, RouteName } from 'routes';
 import { UserController } from 'networking/controllers/user-controller';
 import styles from './card.module.scss';
