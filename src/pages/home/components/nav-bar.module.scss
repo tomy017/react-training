@@ -1,4 +1,4 @@
-@import '../../../assets/stylesheets/colors.scss';
+@import "../../../assets/stylesheets/colors.scss";
 
 .navBar {
   display: flex;
@@ -28,9 +28,9 @@
     height: 40px;
   }
 
-  & input:focus{
+  & input:focus {
     outline: none;
-    border:1px solid $nav-bar-input-border-focus;
+    border: 1px solid $nav-bar-input-border-focus;
   }
 }
 
@@ -46,18 +46,18 @@
 }
 
 .wrapper {
-  position:relative;
+  position: relative;
   width: 100%;
   color: $nav-bar-input-border-focus;
 }
 
 .wrapper i {
-  position:absolute;
-  left:0;
-  padding:10px 10px;
+  position: absolute;
+  left: 0;
+  padding: 10px 10px;
 }
 
-.activeUser {
-  text-align: center;
-  width: 300px;
+.link {
+  text-decoration: none;
+  color: black;
 }
