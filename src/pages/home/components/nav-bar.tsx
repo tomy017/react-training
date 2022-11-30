@@ -56,16 +56,18 @@ const NavBar = () => {
           </div>
         </label>
       </form>
-      <DropDown username={contextValue.currentUser.firstname}>
-        <Button
-          isDisabled={false}
-          className={styles.linkNav}
-          type="button"
-          onClick={handleClick}
-        >
-          Logout 🔒
-        </Button>
-      </DropDown>
+      {(contextValue.currentUser) && (
+        <DropDown username={contextValue.currentUser.firstname}>
+          <Button
+            isDisabled={false}
+            className={styles.linkNav}
+            type="button"
+            onClick={handleClick}
+          >
+            Logout 🔒
+          </Button>
+        </DropDown>
+      )}
     </div>
   );
 };
