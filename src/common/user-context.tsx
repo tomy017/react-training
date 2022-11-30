@@ -1,18 +1,18 @@
 import React from 'react';
 
 interface UserContextInterface {
-  currentUser: LoginResponse
+  currentUser: LoginResponse | null
   unfilteredUsers: DummyUser[]
   filteredUsers: DummyUser[]
   updateUnfilteredUsers: React.Dispatch<React.SetStateAction<DummyUser[]>>
   updateFilteredUsers: React.Dispatch<React.SetStateAction<DummyUser[]>>
-  updateCurrentUser: React.Dispatch<React.SetStateAction<LoginResponse>>
+  updateCurrentUser: React.Dispatch<React.SetStateAction<LoginResponse | null>>
 }
 
 const value = {
-  currentUser: {} as LoginResponse,
-  unfilteredUsers: [] as DummyUser[],
-  filteredUsers: [] as DummyUser[],
+  currentUser: null,
+  unfilteredUsers: [],
+  filteredUsers: [],
   updateUnfilteredUsers: () => null,
   updateFilteredUsers: () => null,
   updateCurrentUser: () => null,

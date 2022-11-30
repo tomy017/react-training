@@ -9,7 +9,7 @@ import { UserContext } from './common/user-context';
 const App = () => {
   const [filteredUsers, setFilteredUsers] = useState<DummyUser[]>([]);
   const [unfilteredUsers, setUnfilteredUsers] = useState<DummyUser[]>([]);
-  const [currentUser, setCurrentUser] = useState<LoginResponse>({} as LoginResponse);
+  const [currentUser, setCurrentUser] = useState<LoginResponse | null>(null);
 
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
