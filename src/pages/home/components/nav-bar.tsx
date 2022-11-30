@@ -3,6 +3,7 @@ import { useDebounce } from 'hooks/useDebounce';
 import { AppLink, goToPage, RouteName } from 'routes';
 import { UserContext } from '../../../common/user-context';
 import { DropDown } from './dropdown';
+import { Button } from '../../../common/buttons/button';
 import styles from './nav-bar.module.scss';
 
 const NavBar = () => {
@@ -56,13 +57,14 @@ const NavBar = () => {
         </label>
       </form>
       <DropDown username={contextValue.currentUser.firstname}>
-        <button
-          className={styles.link}
+        <Button
+          isDisabled={false}
+          className={styles.linkNav}
           type="button"
           onClick={handleClick}
         >
           Logout 🔒
-        </button>
+        </Button>
       </DropDown>
     </div>
   );
