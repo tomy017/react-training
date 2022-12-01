@@ -1,12 +1,19 @@
-import { User } from 'networking/types/user';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDebounce } from 'hooks/useDebounce';
-import { AppLink, RouteName } from 'routes';
+import { AppLink, goToPage, RouteName } from 'routes';
 import { UserContext } from '../../../common/user-context';
+import { DropDown } from './dropdown';
+import { Button } from '../../../common/buttons/button';
 import styles from './nav-bar.module.scss';
 
 const NavBar = () => {
-  const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '') as User;
+  const contextValue = useContext(UserContext);
+
+  const handleClick = () => {
+    document.cookie = `userToken=;expires=${new Date()}`;
+    goToPage(RouteName.Login);
+  };
+
   const [searchTerm, setSearchTerm] = useState<string>('');
   const { unfilteredUsers, updateFilteredUsers } = useContext(UserContext);
   const debouncedSearchTerm = useDebounce<string>(searchTerm, 500);
@@ -49,7 +56,18 @@ const NavBar = () => {
           </div>
         </label>
       </form>
-      <span className={styles.activeUser}>{activeUser.firstName}</span>
+      {(contextValue.currentUser) && (
+        <DropDown username={contextValue.currentUser.firstname}>
+          <Button
+            isDisabled={false}
+            className={styles.linkNav}
+            type="button"
+            onClick={handleClick}
+          >
+            Logout 🔒
+          </Button>
+        </DropDown>
+      )}
     </div>
   );
 };

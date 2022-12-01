@@ -4,6 +4,16 @@ import { UserSerializer } from 'networking/serializers/user-serializer';
 import { constants } from '../../config/constants';
 
 class UserController {
+  static async signup(user: User): Promise<SignupResponse> {
+    const response = await ApiService.post<User>(API_ROUTES.SIGNUP, user);
+    return response.data;
+  }
+
+  static async login(data: LoginData): Promise<LoginResponse> {
+    const response = await ApiService.post<LoginResponse>(API_ROUTES.LOGIN, data);
+    return response.data;
+  }
+
   static async getUsers(page: number) : Promise<DummyUsers> {
     const config = {
       headers: {

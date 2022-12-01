@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import * as jose from 'jose';
 
 import { Button } from 'common/buttons/button';
 import { checkLoginInputs, isValidEmail } from 'helpers/validators';
-import { User } from 'networking/types/user';
 import { goToPage, RouteName } from 'routes';
 import { classnames } from 'helpers/utils';
+import { UserController } from 'networking/controllers/user-controller';
+import { UserContext } from 'common/user-context';
+import { constants } from '../../../config/constants';
 import styles from './card.module.scss';
 import userIcon from '../../../assets/images/user.png';
 
 const LoginForm = () => {
+  const contextValue = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(true);
@@ -26,22 +30,22 @@ const LoginForm = () => {
   const handleSubmit = (e : React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!emailIsValid) {
-      setError(true);
-      setReminder('Check your email');
-      return;
-    }
+    const data: LoginData = {
+      email,
+      password,
+    };
 
-    const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
-    const found = users.find((user) => user.email === email && user.password === password);
-
-    if (!found) {
-      setError(true);
-      setReminder('User not registered');
-    } else {
-      localStorage.setItem('activeUser', JSON.stringify(found));
+    UserController.login(data).then(async (user) => {
+      const publicKey = await jose.importSPKI(constants.publicKey!!, 'RS256');
+      const decoded = await jose.jwtVerify(user.token, publicKey);
+      document.cookie = `userToken=${user.token};expires=${decoded.payload.expires as Date}`;
+      contextValue.updateCurrentUser(user);
+      localStorage.setItem('activeUser', JSON.stringify(user));
       goToPage(RouteName.Home, undefined, undefined);
-    }
+    }).catch((err) => {
+      setError(true);
+      setReminder(err.message);
+    });
   };
 
   const emailValidation = () => setEmailIsValid(isValidEmail(email));

@@ -4,7 +4,6 @@ import globalStyles from 'assets/stylesheets/global-styles.module.scss';
 import { UserController } from 'networking/controllers/user-controller';
 import { ParamsHelper } from 'helpers/params-helper';
 import { AppLink, goToPage, RouteName } from 'routes';
-import { User } from 'networking/types/user';
 import { Pagination } from 'common/pagination/pagination';
 import { UserContext } from '../../common/user-context';
 import { UserCard } from './components/user-card';
@@ -28,8 +27,8 @@ const Home = () => {
 
   const RECORDS_PER_PAGE = 20;
 
-  const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '{}') as User;
-  if (!activeUser.email) {
+  const cookieValue = document.cookie;
+  if (!cookieValue) {
     goToPage(RouteName.Login);
   }
 

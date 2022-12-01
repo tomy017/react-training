@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { UnderlineButton } from 'common/buttons/underline-button';
 import { goToPage, RouteName } from 'routes';
-import { User } from 'networking/types/user';
+// import { User } from 'networking/types/user';
 import styles from './card.module.scss';
 import { LoginForm } from './login-form';
 import { SignUpForm } from './signup-form';
 
 const Card = () => {
-  const activeUser = JSON.parse(localStorage.getItem('activeUser') ?? '{}') as User;
-  if (activeUser.email) {
+  const value = document.cookie;
+  if (value) {
     goToPage(RouteName.Home);
   }
 

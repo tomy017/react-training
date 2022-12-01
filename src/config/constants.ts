@@ -13,7 +13,9 @@ const environment = {
 
 export const constants = {
   apiBaseURL: fetchVariable('REACT_APP_API_BASE_URL', 'REPLACE ME'),
+  apiPort: fetchVariable('REACT_APP_PORT', ''),
   appID: fetchVariable('REACT_APP_ID', ''),
+  publicKey: fetchVariable('REACT_APP_PUBLIC_KEY', ''),
 
   environment,
 };

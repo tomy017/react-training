@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 import { Button } from 'common/buttons/button';
 import { isValidPassword, isValidEmail, checkSignupInputs } from 'helpers/validators';
 import { classnames } from 'helpers/utils';
-import { User } from 'networking/types/user';
 import { goToPage, RouteName } from 'routes';
+import { UserController } from 'networking/controllers/user-controller';
 import styles from './card.module.scss';
 
 const DEFAULT_REMINDER = 'Password must be 8 characters long and include special characters';
 
 const SignUpForm = () => {
   const [formInputs, setFormInputs] = useState({
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     email: '',
     password: '',
     passwordConfirmation: '',
@@ -34,29 +34,19 @@ const SignUpForm = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!(emailIsValid && passwordIsValid && confirmationIsValid)) {
-      setError(true);
-      setReminder('Check your information');
-      return;
-    }
-
-    const users = JSON.parse(localStorage.getItem('users') ?? '[]') as User[];
-    const newUser : User = {
-      firstName: formInputs.firstName,
-      lastName: formInputs.lastName,
-      email: formInputs.email,
+    const user: User = {
+      firstname: formInputs.firstname,
+      lastname: formInputs.lastname,
       password: formInputs.password,
+      email: formInputs.email,
     };
 
-    const found = users.find((user) => user.email === newUser.email);
-    if (!found) {
-      users.push(newUser);
-      localStorage.setItem('users', JSON.stringify(users));
+    UserController.signup(user).then(() => {
       goToPage(RouteName.Login);
-    } else {
+    }).catch((err) => {
       setError(true);
-      setReminder('User already registered');
-    }
+      setReminder(err.message);
+    });
   };
 
   const emailValidation = () => setEmailIsValid(isValidEmail(formInputs.email));
@@ -69,25 +59,25 @@ const SignUpForm = () => {
     <form onSubmit={handleSubmit}>
       <div className={styles.cardContainer}>
         <div className={styles.cardElement}>
-          <label htmlFor="firstName">
+          <label htmlFor="firstname">
             <input
               className={styles.validInput}
               type="text"
-              name="firstName"
+              name="firstname"
               placeholder="first name"
-              value={formInputs.firstName}
+              value={formInputs.firstname}
               onChange={handleInputChange}
             />
           </label>
         </div>
         <div className={styles.cardElement}>
-          <label htmlFor="lastName">
+          <label htmlFor="lastname">
             <input
               className={styles.validInput}
               type="text"
-              name="lastName"
+              name="lastname"
               placeholder="last name"
-              value={formInputs.lastName}
+              value={formInputs.lastname}
               onChange={handleInputChange}
             />
           </label>
@@ -140,8 +130,8 @@ const SignUpForm = () => {
             type="submit"
             onClick={() => null}
             isDisabled={!checkSignupInputs(
-              formInputs.firstName,
-              formInputs.lastName,
+              formInputs.firstname,
+              formInputs.lastname,
               formInputs.email,
               formInputs.password,
               formInputs.passwordConfirmation,
