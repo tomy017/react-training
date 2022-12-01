@@ -4,7 +4,7 @@
   display: none;
 }
 
-.showMenu {
+.showMenuLayout {
   position: absolute;
   left: 0;
   right: 0;
@@ -17,6 +17,9 @@
   padding-top: 10px;
   justify-content: center;
   background-color: white;
+}
+
+.showMenuBorder {
   border: 1px solid $nav-bar-input-border-focus;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

@@ -38,7 +38,7 @@ const DropDown = (props: DropDownProps) => {
       >
         {props.username}
       </button>
-      <div className={classnames(show ? styles.showMenu : styles.hideMenu)}>
+      <div className={classnames(show ? `${styles.showMenuLayout} ${styles.showMenuBorder}` : styles.hideMenu)}>
         <div>
           {props.children}
         </div>
